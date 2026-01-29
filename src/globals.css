@@ -13,7 +13,7 @@
     --popover: 0 0% 100%; /* #FFFFFF */
     --popover-foreground: 222 47.4% 11.2%; /* #0F172A */
 
-    --primary: 47.9 95.8% 53.1%; /* #FACC15 */
+    --primary: 0 85% 60%; /* #F03E3E */
     --primary-foreground: 222 47.4% 11.2%; /* #0F172A */
 
     --secondary: 210 40% 96.1%; /* #F8FAFC */
@@ -25,16 +25,14 @@
     --accent: 210 40% 96.1%; /* #F8FAFC */
     --accent-foreground: 222 47.4% 11.2%; /* #0F172A */
 
-    --destructive: 0 84.2% 60.2%; /* Keeping default red for destructive */
+    --destructive: 359 70% 51%; /* #DC2626 */
     --destructive-foreground: 210 40% 98%; /* Keeping default white for destructive foreground */
 
     --border: 214.3 31.8% 91.4%; /* #E5E7EB */
     --input: 214.3 31.8% 91.4%; /* #E5E7EB */
-    --ring: 47.9 95.8% 53.1%; /* #FACC15 */
+    --ring: 0 85% 60%; /* #F03E3E */
 
     --radius: 0.5rem;
-
-    /* Sidebar colors removed as they are not part of the new strict color system */
   }
 }
 

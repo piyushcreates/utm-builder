@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  // Removed darkMode as per strict single-theme color system
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -52,7 +51,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Sidebar colors removed as they are not part of the new strict color system
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -79,7 +79,7 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
                   <FormLabel className="text-foreground">Website URL</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="https://example.com"
+                      placeholder="example.com"
                       className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
                       {...field}
                     />
