@@ -15,7 +15,20 @@ interface UTMFormCardProps {
 }
 
 const formSchema = z.object({
-  websiteUrl: z.string().url({ message: "Please enter a valid URL." }).min(1, { message: "Website URL is required." }),
+  websiteUrl: z.string()
+    .min(1, { message: "Website URL is required." })
+    .refine((val) => {
+      let processedVal = val;
+      if (!processedVal.startsWith("http://") && !processedVal.startsWith("https://")) {
+        processedVal = `https://${processedVal}`;
+      }
+      try {
+        new URL(processedVal);
+        return true;
+      } catch {
+        return false;
+      }
+    }, { message: "Please enter a valid URL." }),
   utmSource: z.string().min(1, { message: "UTM Source is required." }),
   utmMedium: z.string().min(1, { message: "UTM Medium is required." }),
   utmCampaign: z.string().min(1, { message: "UTM Campaign is required." }),

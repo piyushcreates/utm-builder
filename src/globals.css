@@ -28,6 +28,9 @@
     --destructive: 359 70% 51%; /* #DC2626 */
     --destructive-foreground: 210 40% 98%; /* Keeping default white for destructive foreground */
 
+    --success: 145 63.9% 36.3%; /* #16A34A */
+    --success-foreground: 210 40% 98%; /* White text for success background */
+
     --border: 214.3 31.8% 91.4%; /* #E5E7EB */
     --input: 214.3 31.8% 91.4%; /* #E5E7EB */
     --ring: 0 85% 60%; /* #F03E3E */
