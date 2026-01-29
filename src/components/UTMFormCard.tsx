@@ -37,6 +37,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
+    let processedUrl = values.websiteUrl;
+    // Automatically prefix https:// if no protocol is present
+    if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
+      processedUrl = `https://${processedUrl}`;
+    }
+
     const params = new URLSearchParams();
     if (values.utmSource) params.append("utm_source", values.utmSource);
     if (values.utmMedium) params.append("utm_medium", values.utmMedium);
@@ -44,7 +50,7 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
     if (values.utmTerm) params.append("utm_term", values.utmTerm);
     if (values.utmContent) params.append("utm_content", values.utmContent);
 
-    const baseUrl = new URL(values.websiteUrl);
+    const baseUrl = new URL(processedUrl);
     baseUrl.search = params.toString();
     onGenerate(baseUrl.toString());
   };

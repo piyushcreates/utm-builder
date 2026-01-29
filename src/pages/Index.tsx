@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import Header from "@/components/Header";
 import UTMFormCard from "@/components/UTMFormCard";
 import OutputCard from "@/components/OutputCard";
@@ -20,7 +19,9 @@ const Index = () => {
         <UTMFormCard onGenerate={handleGenerateUrl} />
         <OutputCard generatedUrl={generatedUrl} />
       </main>
-      <MadeWithDyad />
+      <footer className="mt-8 text-center text-sm text-muted-foreground">
+        Powered by Social Masla
+      </footer>
     </div>
   );
 };
