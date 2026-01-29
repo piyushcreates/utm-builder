@@ -1,16 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+"use client";
 
+import React, { useState } from "react";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import Header from "@/components/Header";
+import UTMFormCard from "@/components/UTMFormCard";
+import OutputCard from "@/components/OutputCard";
 
 const Index = () => {
+  const [generatedUrl, setGeneratedUrl] = useState<string | null>(null);
+
+  const handleGenerateUrl = (url: string) => {
+    setGeneratedUrl(url);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground p-4">
+      <main className="w-full max-w-4xl mx-auto py-16">
+        <Header />
+        <UTMFormCard onGenerate={handleGenerateUrl} />
+        <OutputCard generatedUrl={generatedUrl} />
+      </main>
       <MadeWithDyad />
     </div>
   );
