@@ -5,34 +5,31 @@
 @layer base {
   :root {
     --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 222 47.4% 11.2%; /* #0F172A */
+    --foreground: 0 0% 7%; /* #111111 */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 222 47.4% 11.2%; /* #0F172A */
+    --card-foreground: 0 0% 7%; /* #111111 */
 
     --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 222 47.4% 11.2%; /* #0F172A */
+    --popover-foreground: 0 0% 7%; /* #111111 */
 
     --primary: 0 85% 60%; /* #F03E3E */
-    --primary-foreground: 222 47.4% 11.2%; /* #0F172A */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --secondary: 210 40% 96.1%; /* #F8FAFC */
-    --secondary-foreground: 222 47.4% 11.2%; /* #0F172A */
+    --secondary: 0 0% 100%; /* #FFFFFF (white for space) */
+    --secondary-foreground: 0 0% 7%; /* #111111 */
 
-    --muted: 210 40% 96.1%; /* #F8FAFC */
-    --muted-foreground: 215.4 16.3% 46.9%; /* #475569 */
+    --muted: 0 0% 100%; /* #FFFFFF (white for space) */
+    --muted-foreground: 0 0% 33%; /* #555555 */
 
-    --accent: 210 40% 96.1%; /* #F8FAFC */
-    --accent-foreground: 222 47.4% 11.2%; /* #0F172A */
+    --accent: 0 70% 49%; /* #D73737 (Button hover) */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --destructive: 359 70% 51%; /* #DC2626 */
-    --destructive-foreground: 210 40% 98%; /* Keeping default white for destructive foreground */
+    --destructive: 0 85% 60%; /* #F03E3E (Red for actions) */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --success: 145 63.9% 36.3%; /* #16A34A */
-    --success-foreground: 210 40% 98%; /* White text for success background */
-
-    --border: 214.3 31.8% 91.4%; /* #E5E7EB */
-    --input: 214.3 31.8% 91.4%; /* #E5E7EB */
+    --border: 0 0% 90%; /* #E5E5E5 */
+    --input: 0 0% 90%; /* #E5E5E5 */
     --ring: 0 85% 60%; /* #F03E3E */
 
     --radius: 0.5rem;
