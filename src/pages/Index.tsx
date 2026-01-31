@@ -20,7 +20,15 @@ const Index = () => {
         <OutputCard generatedUrl={generatedUrl} />
       </main>
       <footer className="mt-8 text-center text-sm text-muted-foreground">
-        Powered by Social Masla
+        Powered by{" "}
+        <a
+          href="https://socialmasla.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          Social Masla
+        </a>
       </footer>
     </div>
   );
