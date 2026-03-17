@@ -13,6 +13,11 @@
 - **AI SEO**: Integrated JSON-LD structured data (Schema.org) to optimize for AI crawlers like ChatGPT-Search and Gemini.
 - **Semantic HTML**: Re-structured page elements using standard semantic tags for better accessibility and crawlability.
 
+## [0.4.0] - 2026-03-18
+### Changed
+- **Single Viewport Optimization**: Compressed desktop layout to ensure all core functionality is visible without scrolling ("Above the Fold").
+- **High-Density UI**: Reduced vertical margins, scaled down hero typography, and tightened card padding for a more efficient professional interface.
+
 ## [0.2.1] - 2026-03-17
 
 ## [0.1.0] - 2026-03-17

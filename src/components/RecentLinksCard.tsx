@@ -30,22 +30,22 @@ const RecentLinksCard: React.FC<RecentLinksCardProps> = ({ links, onDelete }) =>
   };
 
   return (
-    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-6 md:p-8 h-full flex flex-col">
-      <CardHeader className="px-0 pt-0 pb-6 md:pb-8">
-        <div className="text-[0.6875rem] font-bold tracking-[0.15em] uppercase text-primary mb-3">
+    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-5 md:p-6 h-full flex flex-col">
+      <CardHeader className="px-0 pt-0 pb-4 md:pb-5">
+        <div className="text-[0.625rem] font-bold tracking-[0.15em] uppercase text-primary mb-2">
           History
         </div>
-        <CardTitle className="text-2xl md:text-[1.75rem] font-bold tracking-tight mb-2">Recent Links</CardTitle>
+        <CardTitle className="text-xl md:text-2xl font-bold tracking-tight mb-1">Recent Links</CardTitle>
       </CardHeader>
       
       <CardContent className="p-0 flex-1 overflow-hidden">
         {links.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-muted/40 py-12">
-            <LinkIcon size={40} className="mb-4 opacity-20" />
-            <p className="text-sm font-bold uppercase tracking-wider">No links generated yet</p>
+          <div className="h-full flex flex-col items-center justify-center text-muted/40 py-8">
+            <LinkIcon size={32} className="mb-3 opacity-20" />
+            <p className="text-[12px] font-bold uppercase tracking-wider">No links yet</p>
           </div>
         ) : (
-          <ScrollArea className="h-[400px]">
+          <ScrollArea className="h-[460px]">
             <div className="space-y-4">
               {links.map((link) => (
                 <div 

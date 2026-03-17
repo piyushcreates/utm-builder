@@ -54,18 +54,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
-      <main className="flex-1 w-full max-w-[1340px] mx-auto px-6 py-12 md:px-10 md:py-20 pb-20">
-        <div className="mb-12 md:mb-20 text-center flex flex-col items-center" role="banner">
-          <h1 className="text-5xl md:text-[5.5rem] leading-[1.1] md:leading-[1.0] font-extrabold tracking-[-0.04em] mb-6 whitespace-pre-wrap md:whitespace-normal">
+      <main className="flex-1 w-full max-w-[1340px] mx-auto px-6 py-6 md:px-10 md:py-8 pb-12">
+        <div className="mb-6 md:mb-8 text-center flex flex-col items-center" role="banner">
+          <h1 className="text-4xl md:text-6xl leading-[1.1] md:leading-[1.0] font-extrabold tracking-[-0.04em] mb-4 whitespace-pre-wrap md:whitespace-normal">
             UTM <span className="text-primary">Builder</span>
           </h1>
-          <p className="text-base md:text-[1.125rem] leading-[1.6] md:leading-[1.7] text-muted max-w-2xl px-2 md:px-4">
+          <p className="text-sm md:text-base leading-[1.5] md:leading-[1.6] text-muted max-w-2xl px-2 md:px-4">
             Streamline your campaign tracking with our premium UTM builder. 
             Generate clean, professional, and trackable URLs in seconds following the Social Masla standard.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
           <div className="lg:col-span-7">
             <UTMFormCard 
               onGenerate={handleGenerateUrl} 

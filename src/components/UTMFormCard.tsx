@@ -93,21 +93,21 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
   };
 
   return (
-    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-6 md:p-8">
-      <CardHeader className="px-0 pt-0 pb-6 md:pb-8">
-        <div className="text-[0.6875rem] font-bold tracking-[0.15em] uppercase text-primary mb-3">
+    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-5 md:p-6">
+      <CardHeader className="px-0 pt-0 pb-4 md:pb-5">
+        <div className="text-[0.625rem] font-bold tracking-[0.15em] uppercase text-primary mb-2">
           Configuration
         </div>
-        <CardTitle className="text-2xl md:text-[1.75rem] font-bold tracking-tight mb-2">Campaign Parameters</CardTitle>
-        <CardDescription className="text-sm md:text-base text-muted/80">
+        <CardTitle className="text-xl md:text-2xl font-bold tracking-tight mb-1">Campaign Parameters</CardTitle>
+        <CardDescription className="text-[13px] md:text-sm text-muted/80">
           Fill in the details to generate your high-performance UTM-tagged URL.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="space-y-4">
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted/60">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="space-y-3">
+              <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted/60">
                 Quick Presets
               </div>
               <div className="flex flex-wrap gap-3">
@@ -133,17 +133,17 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 ))}
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
               <FormField
                 control={form.control}
                 name="websiteUrl"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">Website URL</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">Website URL</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="example.com"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -155,12 +155,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 control={form.control}
                 name="utmSource"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Source</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">UTM Source</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="google, facebook, newsletter"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        placeholder="google, facebook"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -172,12 +172,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 control={form.control}
                 name="utmMedium"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Medium</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">UTM Medium</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="cpc, organic, email"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        placeholder="cpc, organic"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -189,12 +189,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 control={form.control}
                 name="utmCampaign"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Campaign</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">UTM Campaign</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="product_launch, summer_sale"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        placeholder="summer_sale"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -206,12 +206,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 control={form.control}
                 name="utmTerm"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Term (Optional)</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">UTM Term (Optional)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="running_shoes"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -223,12 +223,12 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 control={form.control}
                 name="utmContent"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
-                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Content (Optional)</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[12px] font-bold uppercase tracking-wider text-foreground">UTM Content (Optional)</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="banner_top, button_click"
-                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        placeholder="banner_top"
+                        className="h-11 rounded-[6px] border-foreground/10 bg-white px-3 text-sm focus:ring-primary focus:border-primary transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -240,11 +240,11 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
             
 
 
-            <div className="flex items-center gap-4 pt-4 border-t border-foreground/5">
+            <div className="flex items-center gap-4 pt-3 border-t border-foreground/5">
               <Button 
                 type="submit" 
                 disabled={!form.formState.isValid}
-                className="h-14 px-10 rounded-[8px] bg-primary text-white font-bold text-base hover:bg-accent-hover transition-colors"
+                className="h-12 px-8 rounded-[8px] bg-primary text-white font-bold text-sm hover:bg-accent-hover transition-colors"
               >
                 Generate URL
               </Button>
@@ -252,7 +252,7 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange })
                 type="button" 
                 variant="ghost" 
                 onClick={handleReset}
-                className="h-14 px-8 rounded-[8px] text-foreground font-bold hover:bg-foreground/5 transition-colors"
+                className="h-12 px-6 rounded-[8px] text-foreground font-bold text-sm hover:bg-foreground/5 transition-colors"
               >
                 Reset
               </Button>
