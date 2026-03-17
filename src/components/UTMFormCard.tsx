@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 interface UTMFormCardProps {
   onGenerate: (url: string) => void;
+  onValuesChange?: (values: any) => void;
 }
 
 const formSchema = z.object({
@@ -35,7 +36,7 @@ const formSchema = z.object({
   utmContent: z.string().optional(),
 });
 
-const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
+const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate, onValuesChange }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,22 +49,42 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
     },
   });
 
+  const watchedValues = form.watch();
+
+  React.useEffect(() => {
+    if (onValuesChange) {
+      onValuesChange(watchedValues);
+    }
+  }, [watchedValues, onValuesChange]);
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    let processedUrl = values.websiteUrl;
+    let processedUrl = values.websiteUrl.trim();
+    
+    // Smart Protocol Detection
     if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
       processedUrl = `https://${processedUrl}`;
     }
 
-    const params = new URLSearchParams();
-    if (values.utmSource) params.append("utm_source", values.utmSource);
-    if (values.utmMedium) params.append("utm_medium", values.utmMedium);
-    if (values.utmCampaign) params.append("utm_campaign", values.utmCampaign);
-    if (values.utmTerm) params.append("utm_term", values.utmTerm);
-    if (values.utmContent) params.append("utm_content", values.utmContent);
+    // Smart Sanitization Helper
+    const sanitize = (val?: string) => {
+      if (!val) return "";
+      return val.trim().toLowerCase().replace(/\s+/g, "_");
+    };
 
-    const baseUrl = new URL(processedUrl);
-    baseUrl.search = params.toString();
-    onGenerate(baseUrl.toString());
+    const params = new URLSearchParams();
+    if (values.utmSource) params.append("utm_source", sanitize(values.utmSource));
+    if (values.utmMedium) params.append("utm_medium", sanitize(values.utmMedium));
+    if (values.utmCampaign) params.append("utm_campaign", sanitize(values.utmCampaign));
+    if (values.utmTerm) params.append("utm_term", sanitize(values.utmTerm));
+    if (values.utmContent) params.append("utm_content", sanitize(values.utmContent));
+
+    try {
+      const baseUrl = new URL(processedUrl);
+      baseUrl.search = params.toString();
+      onGenerate(baseUrl.toString());
+    } catch (e) {
+      console.error("Invalid URL generated:", e);
+    }
   };
 
   const handleReset = () => {
@@ -72,19 +93,46 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
   };
 
   return (
-    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-8">
-      <CardHeader className="px-0 pt-0 pb-8">
+    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-6 md:p-8">
+      <CardHeader className="px-0 pt-0 pb-6 md:pb-8">
         <div className="text-[0.6875rem] font-bold tracking-[0.15em] uppercase text-primary mb-3">
           Configuration
         </div>
-        <CardTitle className="text-[1.75rem] font-bold tracking-tight mb-2">Campaign Parameters</CardTitle>
-        <CardDescription className="text-base text-muted/80">
+        <CardTitle className="text-2xl md:text-[1.75rem] font-bold tracking-tight mb-2">Campaign Parameters</CardTitle>
+        <CardDescription className="text-sm md:text-base text-muted/80">
           Fill in the details to generate your high-performance UTM-tagged URL.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="space-y-4">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted/60">
+                Quick Presets
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: "Meta Ads", source: "meta", medium: "paid" },
+                  { label: "Google Search", source: "google", medium: "cpc" },
+                  { label: "Email Newsletter", source: "newsletter", medium: "email" },
+                  { label: "X (Twitter)", source: "x", medium: "social" },
+                ].map((preset) => (
+                  <Button
+                    key={preset.label}
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="h-10 px-4 rounded-[6px] border-foreground/10 text-[13px] font-bold hover:bg-primary hover:text-white hover:border-primary transition-all"
+                    onClick={() => {
+                      form.setValue("utmSource", preset.source);
+                      form.setValue("utmMedium", preset.medium);
+                    }}
+                  >
+                    {preset.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               <FormField
                 control={form.control}
@@ -190,6 +238,8 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
               />
             </div>
             
+
+
             <div className="flex items-center gap-4 pt-4 border-t border-foreground/5">
               <Button 
                 type="submit" 

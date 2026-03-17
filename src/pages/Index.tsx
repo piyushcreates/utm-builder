@@ -1,34 +1,83 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import UTMFormCard from "@/components/UTMFormCard";
 import OutputCard from "@/components/OutputCard";
+import RecentLinksCard from "@/components/RecentLinksCard";
+
+interface RecentLink {
+  id: string;
+  url: string;
+  timestamp: number;
+}
 
 const Index = () => {
   const [generatedUrl, setGeneratedUrl] = useState<string | null>(null);
+  const [history, setHistory] = useState<RecentLink[]>([]);
+
+  // Load history from localStorage
+  useEffect(() => {
+    const savedHistory = localStorage.getItem("utm_history");
+    if (savedHistory) {
+      try {
+        setHistory(JSON.parse(savedHistory));
+      } catch (e) {
+        console.error("Failed to parse history:", e);
+      }
+    }
+  }, []);
+
+  // Save history to localStorage
+  const saveHistory = (newHistory: RecentLink[]) => {
+    setHistory(newHistory);
+    localStorage.setItem("utm_history", JSON.stringify(newHistory));
+  };
 
   const handleGenerateUrl = (url: string) => {
     setGeneratedUrl(url);
+    if (url) {
+      const newEntry: RecentLink = {
+        id: crypto.randomUUID(),
+        url,
+        timestamp: Date.now(),
+      };
+      const updatedHistory = [newEntry, ...history].slice(0, 50); // Keep last 50
+      saveHistory(updatedHistory);
+    }
+  };
+
+  const handleDeleteHistory = (id: string) => {
+    const updatedHistory = history.filter((item) => item.id !== id);
+    saveHistory(updatedHistory);
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <main className="flex-1 w-full max-w-[1340px] mx-auto px-10 py-20 pb-20">
-        <div className="mb-16 text-center flex flex-col items-center">
-          <h1 className="text-[5.5rem] leading-[1.0] font-extrabold tracking-[-0.04em] mb-6">
+    <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
+      <main className="flex-1 w-full max-w-[1340px] mx-auto px-6 py-12 md:px-10 md:py-20 pb-20">
+        <div className="mb-12 md:mb-20 text-center flex flex-col items-center" role="banner">
+          <h1 className="text-5xl md:text-[5.5rem] leading-[1.1] md:leading-[1.0] font-extrabold tracking-[-0.04em] mb-6 whitespace-pre-wrap md:whitespace-normal">
             UTM <span className="text-primary">Builder</span>
           </h1>
-          <p className="text-[1.125rem] leading-[1.7] text-muted max-w-2xl px-4">
+          <p className="text-base md:text-[1.125rem] leading-[1.6] md:leading-[1.7] text-muted max-w-2xl px-2 md:px-4">
             Streamline your campaign tracking with our premium UTM builder. 
             Generate clean, professional, and trackable URLs in seconds following the Social Masla standard.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-12">
-            <UTMFormCard onGenerate={handleGenerateUrl} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-stretch">
+          <div className="lg:col-span-7">
+            <UTMFormCard 
+              onGenerate={handleGenerateUrl} 
+            />
           </div>
+          <div className="lg:col-span-5 h-full">
+            <RecentLinksCard 
+              links={history}
+              onDelete={handleDeleteHistory}
+            />
+          </div>
+          
           {generatedUrl && (
             <div className="lg:col-span-12 mt-8">
               <OutputCard generatedUrl={generatedUrl} />
