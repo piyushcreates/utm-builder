@@ -4,48 +4,70 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 0 0% 7%; /* #111111 */
+    /* Social Masla Brand Colors */
+    --background: 48 33% 94%; /* #F6F4EB - Signature Cream */
+    --background-panel: 46 25% 90%; /* #EEEADE - Deeper Cream */
+    --background-inverse: 216 12% 8%; /* #121417 - Rich Charcoal */
+    
+    --foreground: 216 12% 8%; /* #121417 - Near Black */
+    --muted: 212 9% 33%; /* #4D545D - Medium Grey */
+    --muted-foreground: 212 9% 33%;
 
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 0 0% 7%; /* #111111 */
+    --primary: 142 76% 36%; /* #16a34a - Social Masla Green */
+    --primary-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 0 0% 7%; /* #111111 */
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
 
-    --primary: 0 85% 60%; /* #F03E3E */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 216 12% 8%; /* Rich Charcoal */
+    --secondary-foreground: 48 33% 94%; /* Cream text on charcoal */
 
-    --secondary: 0 0% 100%; /* #FFFFFF (white for space) */
-    --secondary-foreground: 0 0% 7%; /* #111111 */
+    --card: 48 33% 94%;
+    --card-foreground: 216 12% 8%;
 
-    --muted: 0 0% 100%; /* #FFFFFF (white for space) */
-    --muted-foreground: 0 0% 33%; /* #555555 */
+    --border: 216 12% 8% / 0.1;
+    --input: 216 12% 8% / 0.1;
+    --ring: 142 76% 36%;
 
-    --accent: 0 70% 49%; /* #D73737 (Button hover) */
-    --accent-foreground: 0 0% 100%; /* #FFFFFF */
-
-    --destructive: 0 85% 60%; /* #F03E3E (Red for actions) */
-    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
-
-    --border: 0 0% 90%; /* #E5E5E5 */
-    --input: 0 0% 90%; /* #E5E5E5 */
-    --ring: 0 85% 60%; /* #F03E3E */
-
-    --radius: 0.5rem;
+    --radius: 20px;
   }
 
-  body {
-    font-family: "SF Pro Display", "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  .dark {
+    --background: 216 12% 8%;
+    --foreground: 48 33% 94%;
+    /* Dark mode could be defined here but we follow light theme first */
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    @apply text-foreground font-extrabold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section-padding {
+    padding: 140px 0;
+  }
+
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 100px 0;
+    }
   }
 }

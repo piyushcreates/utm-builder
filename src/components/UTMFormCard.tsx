@@ -4,9 +4,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
@@ -51,7 +50,6 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     let processedUrl = values.websiteUrl;
-    // Automatically prefix https:// if no protocol is present
     if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
       processedUrl = `https://${processedUrl}`;
     }
@@ -70,130 +68,145 @@ const UTMFormCard: React.FC<UTMFormCardProps> = ({ onGenerate }) => {
 
   const handleReset = () => {
     form.reset();
-    onGenerate(""); // Clear generated URL on reset
+    onGenerate("");
   };
 
   return (
-    <Card className="rounded-lg shadow-lg border-border">
-      <CardHeader>
-        <CardTitle className="text-lg font-medium text-foreground">Campaign Parameters</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground">
-          Fill in the details to generate your UTM-tagged URL.
+    <Card className="bg-background-panel border-none shadow-none rounded-[20px] p-8">
+      <CardHeader className="px-0 pt-0 pb-8">
+        <div className="text-[0.6875rem] font-bold tracking-[0.15em] uppercase text-primary mb-3">
+          Configuration
+        </div>
+        <CardTitle className="text-[1.75rem] font-bold tracking-tight mb-2">Campaign Parameters</CardTitle>
+        <CardDescription className="text-base text-muted/80">
+          Fill in the details to generate your high-performance UTM-tagged URL.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormField
-              control={form.control}
-              name="websiteUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">Website URL</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="example.com"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="utmSource"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">UTM Source</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="google"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="utmMedium"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">UTM Medium</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="cpc"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="utmCampaign"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">UTM Campaign</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="summer_sale"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="utmTerm"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">UTM Term (Optional)</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="keyword"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="utmContent"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-foreground">UTM Content (Optional)</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="banner_ad"
-                      className="h-10 rounded-md border-input ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <CardFooter className="col-span-full flex justify-between p-0 mt-6">
-              <Button type="button" variant="ghost" onClick={handleReset} className="rounded-md hover:opacity-80 transition-opacity">
-                Reset
-              </Button>
-              <Button type="submit" disabled={!form.formState.isValid} className="rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+              <FormField
+                control={form.control}
+                name="websiteUrl"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">Website URL</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="example.com"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="utmSource"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Source</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="google, facebook, newsletter"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="utmMedium"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Medium</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="cpc, organic, email"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="utmCampaign"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Campaign</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="product_launch, summer_sale"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="utmTerm"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Term (Optional)</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="running_shoes"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="utmContent"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel className="text-sm font-bold uppercase tracking-wider text-foreground">UTM Content (Optional)</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="banner_top, button_click"
+                        className="h-14 rounded-[8px] border-foreground/10 bg-white px-4 focus:ring-primary focus:border-primary transition-all"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            <div className="flex items-center gap-4 pt-4 border-t border-foreground/5">
+              <Button 
+                type="submit" 
+                disabled={!form.formState.isValid}
+                className="h-14 px-10 rounded-[8px] bg-primary text-white font-bold text-base hover:bg-accent-hover transition-colors"
+              >
                 Generate URL
               </Button>
-            </CardFooter>
+              <Button 
+                type="button" 
+                variant="ghost" 
+                onClick={handleReset}
+                className="h-14 px-8 rounded-[8px] text-foreground font-bold hover:bg-foreground/5 transition-colors"
+              >
+                Reset
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>
